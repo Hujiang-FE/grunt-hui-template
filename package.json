@@ -2,10 +2,18 @@
   "name": "workspace_github_npm",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Daniel.He",
+  "license": "MIT",
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
+  ],
+  "devDependencies": {
+    "chalk": "^1.0.0",
+    "hui-template": "^0.1.0",
+    "js-beautify": "^1.5.5"
+  }
 }
