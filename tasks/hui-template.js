@@ -13,13 +13,22 @@ var chalk = require('chalk');
 module.exports = function(grunt) {
 	'use strict';
 
-	grunt.registerTask('hui-template', 'Generate template js files by hui-template engine.', function(target) {
+	var funcTmpl = 'HUI.template.compile("#{it.name}", function(it) {' +
+		'#{!it.func}' +
+		'});',
+
+		tmpl4tmpljs = '#{!it.banner}' +
+		funcTmpl +
+		'#{!it.footer}';
+
+	grunt.registerMultiTask('hui-template', 'Generate template js files by hui-template engine.', function(target) {
 
 		var self = this,
 			options = this.options({
-				banner: '',
-				footer: '',
+				banner: '/* this js depand on hui-template-compile.js*/',
+				footer: '/* end tag*/',
 				beautify: true,
+				concat: false,
 				dest: ''
 			});
 
@@ -44,16 +53,26 @@ module.exports = function(grunt) {
 			}
 
 			src.forEach(function(file) {
-				var tmplStr = grunt.file.read(file);
-				var output = template.script(tmplStr);
-				var destFile = path.basename(file) + '.js';
+				var tmplStr = grunt.file.read(file),
+					output = template.script(tmplStr),
+					basename = path.basename(file),
+					destFile = basename + '.js';
 
-				if (f.beautify) {
+
+				output = template.render(tmpl4tmpljs, {
+					name: basename,
+					footer: options.footer,
+					banner: options.banner,
+					func: output
+				});
+
+				if (options.beautify) {
 					output = beautify(output, {
 						indent_size: 2
 					})
 				}
 				destFile = path.join(f.dest, destFile);
+
 				grunt.file.write(destFile, output);
 				grunt.log.writeln('Template File ' + chalk.cyan(destFile) + ' created.');
 			});

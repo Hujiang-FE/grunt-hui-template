@@ -1,0 +1,38 @@
+ <span>#{it.name}</span>
+    <br />
+    {{include:tmpl2.tp, it.weeks}}
+	<br />
+
+    {{if:it.isMale=='Male'}}aspx{{/if}}
+    <table class="default-theme">
+        <tr>
+            <td>姓名</td>
+            <td>电话</td>
+            <td>QQ</td>
+            <td>学校</td>
+        </tr>
+    {{for:it.peo}}
+        <tr>
+            <td>
+                #{$val.name}
+            </td>
+            <td>
+                #{$val.phone}
+            </td>
+            <td>
+                #{$val.qq}
+            </td>
+            <td>
+                #{$val.school}
+            </td>
+        </tr>
+    {{/for}}
+    </table>
+    {{if:it.isMale}}
+    <br />
+    <span>I'm a guy!</span>
+    {{if:it.isOld}}
+    <br />
+    <span>I'm old!</span>
+    {{/if}}
+    {{/if}}

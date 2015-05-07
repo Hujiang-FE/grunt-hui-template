@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script src="http://res.hjfile.cn/js/??lib/jq/1.8.3/jquery.min.js" type="text/javascript"></script>
+    <script src="../node_modules/hui-template/hui.template.js" type="text/javascript"></script>
+    <script src="./index.tp.js" type="text/javascript"></script>    
+    <script src="./tmpl2.tp.js" type="text/javascript"></script>
+    <script type="text/javascript">
+         $(function () {
+            var obj = { 
+                "name": "个人信息，姓名、电话、QQ、学校", 
+                "age": 31, 
+                "isMale": true, 
+                "isOld": true, 
+                "weeks": ["Monday","Tuesday","Wednesday","Thursday"],
+                "peo": [{
+                    name: "Ming",
+                    phone: "15920100372",
+                    qq: "540548843",
+                    school: "小学"
+                },{
+                    name: "Lrelia",
+                    phone: "15923103213",
+                    qq: "581823813",
+                    school: "初中"
+                },{
+                    name: "Ttlast",
+                    phone: "13802052141",
+                    qq: "498392183",
+                    school: "高中"
+                },{
+                    name: "dqaq",
+                    phone: "18575275212",
+                    qq: "545467854",
+                    school: "大学"
+                }]
+            }
+
+            var engine = HUI.template.get('index.tp');
+            var str = engine.render(obj);
+
+            $("#content").html(str);
+        });
+    </script> 
+    <style>
+        .default-theme {
+            margin-top: 60px;
+            border: 1px solid #efefef;
+        }
+        .default-theme td {
+            padding: 5px 10px;
+            border: 1px solid #efefef;
+            border-collapse:collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+{{for:it}}
+    <span>#{$idx+1}.#{$val}
+    </span>
+{{/for}}
